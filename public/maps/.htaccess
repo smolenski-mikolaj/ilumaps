@@ -1,0 +1,11 @@
+Options -Indexes
+RewriteEngine On
+# Prevent direct access to php
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?ilumaps [NC] 
+RewriteCond %{HTTP_REFERER} !^https://(www\.)?ilumaps.*$ [NC]
+# Removing php extend
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ $1\.php
+# Set header
+Header set Access-Control-Allow-Origin http://localhost:8080
